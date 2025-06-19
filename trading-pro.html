@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة التداول السعودي الاحترافية - Saudi Trading Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #3b82f6;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1e293b 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .platform-header {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #334155 100%);
+            padding: 20px;
+            border-bottom: 3px solid var(--primary-color);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .platform-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .brand-text h1 {
+            font-size: 1.8em;
+            background: linear-gradient(135deg, var(--secondary-color), #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .brand-text p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px 15px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .stat-value {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            border: 2px solid var(--success-color);
+        }
+
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--success-color);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 20px;
+            min-height: calc(100vh - 120px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            height: fit-content;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .sidebar h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .watchlist {
+            list-style: none;
+        }
+
+        .stock-item {
+            background: #334155;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stock-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stock-item:hover::before {
+            opacity: 1;
+        }
+
+        .stock-item:hover {
+            transform: translateX(8px);
+            border-left-color: var(--secondary-color);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .stock-item.active {
+            border-left-color: var(--success-color);
+            background: linear-gradient(135deg, #334155, #475569);
+        }
+
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .stock-name {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .stock-symbol {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            background: rgba(148, 163, 184, 0.2);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .stock-price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .stock-change {
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .positive { color: var(--success-color); }
+        .negative { color: var(--danger-color); }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 20px;
+        }
+
+        .market-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .overview-card {
+            background: linear-gradient(135deg, var(--card-bg), #334155);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-title {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .card-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .card-change {
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        /* Chart Area */
+        .chart-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .selected-stock {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeframes {
+            display: flex;
+            gap: 8px;
+            background: #334155;
+            padding: 4px;
+            border-radius: 12px;
+        }
+
+        .timeframe-btn {
+            padding: 8px 16px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .timeframe-btn:hover,
+        .timeframe-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .chart-container {
+            height: 400px;
+            position: relative;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Order Book */
+        .order-book {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .book-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .book-side {
+            background: #334155;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .side-header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .bids .side-header {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+        }
+
+        .asks .side-header {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger-color);
+        }
+
+        .book-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            padding: 6px 0;
+            font-size: 0.85em;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .book-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Right Panel */
+        .right-panel {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .panel-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Trading Form */
+        .trading-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: #334155;
+            border-radius: 10px;
+            padding: 4px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background: #334155;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .trade-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .trade-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, var(--success-color), #059669);
+            color: white;
+        }
+
+        .sell-btn {
+            background: linear-gradient(135deg, var(--danger-color), #dc2626);
+            color: white;
+        }
+
+        .trade-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Portfolio Section */
+        .portfolio-stats {
+            background: #334155;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-weight: bold;
+        }
+
+        .holdings-list {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .holding-item {
+            background: #334155;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .holding-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .holding-details {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* News Ticker */
+        .news-ticker {
+            background: linear-gradient(135deg, #334155, #475569);
+            padding: 12px 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 2px solid var(--primary-color);
+            margin-top: 20px;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: scroll 60s linear infinite;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        @keyframes scroll {
+            0% { transform: translate3d(100%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 250px 1fr 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .header-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .chart-header {
+                flex-direction: column;
+            }
+            
+            .right-panel {
+                grid-template-rows: auto auto;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border-color);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="platform-header">
+        <div class="header-content">
+            <div class="platform-brand">
+                <div class="brand-logo">TP</div>
+                <div class="brand-text">
+                    <h1>منصة التداول السعودي</h1>
+                    <p>Saudi Trading Pro - منصة احترافية للتداول والاستثمار</p>
+                </div>
+            </div>
+            
+            <div class="header-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="headerTasi">10,867</div>
+                    <div class="stat-label">مؤشر تاسي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">4.2B</div>
+                    <div class="stat-label">حجم التداول</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">156/89</div>
+                    <div class="stat-label">صاعد/هابط</div>
+                </div>
+                <div class="live-indicator">
+                    <div class="pulse-dot"></div>
+                    <span>مباشر</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3><i class="fas fa-eye"></i> قائمة المراقبة</h3>
+            <ul class="watchlist">
+                <li class="stock-item active" data-symbol="1150.SR">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-name">الإنماء</div>
+                            <div class="stock-symbol">1150.SR</div>
+                        </div>
+                        <i class="fas fa-mosque" style="color: var(--success-color);"></i>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="stock-price">25.05</div>
+                        <div class="stock-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +0.15%
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="stock-item" data-symbol="1120.SR">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-name">الراجحي</div>
+                            <div class="stock-symbol">1120.SR</div>
+                        </div>
+                        <i class="fas fa-landmark" style="color: var(--success-color);"></i>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="stock-price">91.70</div>
+                        <div class="stock-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            -0.97%
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="stock-item" data-symbol="1020.SR">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-name">الجزيرة</div>
+                            <div class="stock-symbol">1020.SR</div>
+                        </div>
+                        <i class="fas fa-building" style="color: var(--success-color);"></i>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="stock-price">18.45</div>
+                        <div class="stock-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +0.32%
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="stock-item" data-symbol="2222.SR">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-name">أرامكو</div>
+                            <div class="stock-symbol">2222.SR</div>
+                        </div>
+                        <i class="fas fa-oil-well" style="color: var(--warning-color);"></i>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="stock-price">28.95</div>
+                        <div class="stock-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +0.87%
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="stock-item" data-symbol="2010.SR">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-name">سابك</div>
+                            <div class="stock-symbol">2010.SR</div>
+                        </div>
+                        <i class="fas fa-industry" style="color: var(--warning-color);"></i>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="stock-price">55.40</div>
+                        <div class="stock-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            -0.72%
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 style="margin-top: 30px;"><i class="fas fa-chart-bar"></i> القطاعات</h3>
+            <ul class="watchlist">
+                <li class="stock-item">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div class="stock-name">البنوك</div>
+                            <div style="font-size: 0.8em; color: var(--text-secondary);">15 شركة</div>
+                        </div>
+                        <div class="stock-change positive">+1.2%</div>
+                    </div>
+                </li>
+                <li class="stock-item">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div class="stock-name">البتروكيماويات</div>
+                            <div style="font-size: 0.8em; color: var(--text-secondary);">8 شركات</div>
+                        </div>
+                        <div class="stock-change negative">-0.8%</div>
+                    </div>
+                </li>
+                <li class="stock-item">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div class="stock-name">التأمين</div>
+                            <div style="font-size: 0.8em; color: var(--text-secondary);">12 شركة</div>
+                        </div>
+                        <div class="stock-change positive">+0.5%</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Market Overview -->
+            <div class="market-overview">
+                <div class="overview-card">
+                    <div class="card-title">مؤشر تاسي</div>
+                    <div class="card-value" id="tasiValue">10,867.04</div>
+                    <div class="card-change positive" id="tasiChange">+149.40 (+1.38%)</div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="card-title">حجم التداول</div>
+                    <div class="card-value">4.2B</div>
+                    <div class="card-change">ريال سعودي</div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="card-title">القيمة السوقية</div>
+                    <div class="card-value">2.9T</div>
+                    <div class="card-change">ريال سعودي</div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="card-title">الأسهم النشطة</div>
+                    <div class="card-value">245</div>
+                    <div class="card-change positive">+12 اليوم</div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="card-title">نسبة الصعود</div>
+                    <div class="card-value">64%</div>
+                    <div class="card-change positive">156 صاعد</div>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="chart-section">
+                <div class="chart-header">
+                    <div class="selected-stock" id="selectedStock">
+                        <i class="fas fa-mosque"></i>
+                        بنك الإنماء (1150.SR)
+                    </div>
+                    <div class="timeframes">
+                        <button class="timeframe-btn" data-timeframe="1m">1م</button>
+                        <button class="timeframe-btn" data-timeframe="5m">5م</button>
+                        <button class="timeframe-btn" data-timeframe="15m">15م</button>
+                        <button class="timeframe-btn" data-timeframe="1h">1س</button>
+                        <button class="timeframe-btn active" data-timeframe="1d">1ي</button>
+                        <button class="timeframe-btn" data-timeframe="1w">1أ</button>
+                        <button class="timeframe-btn" data-timeframe="1M">1ش</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="mainChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Order Book -->
+            <div class="order-book">
+                <div class="book-header">
+                    <i class="fas fa-list-alt"></i> دفتر الأوامر - العمق الكامل
+                </div>
+                <div class="book-grid">
+                    <div class="book-side bids">
+                        <div class="side-header">
+                            <i class="fas fa-arrow-up"></i> طلبات الشراء
+                        </div>
+                        <div class="book-row" style="font-weight: bold; color: var(--text-secondary);">
+                            <span>السعر</span>
+                            <span>الكمية</span>
+                            <span>المجموع</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--success-color);">25.04</span>
+                            <span>1,250</span>
+                            <span>31,300</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--success-color);">25.03</span>
+                            <span>2,100</span>
+                            <span>52,563</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--success-color);">25.02</span>
+                            <span>850</span>
+                            <span>21,267</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--success-color);">25.01</span>
+                            <span>3,200</span>
+                            <span>80,032</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--success-color);">25.00</span>
+                            <span>1,800</span>
+                            <span>45,000</span>
+                        </div>
+                    </div>
+                    
+                    <div class="book-side asks">
+                        <div class="side-header">
+                            <i class="fas fa-arrow-down"></i> طلبات البيع
+                        </div>
+                        <div class="book-row" style="font-weight: bold; color: var(--text-secondary);">
+                            <span>السعر</span>
+                            <span>الكمية</span>
+                            <span>المجموع</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--danger-color);">25.06</span>
+                            <span>950</span>
+                            <span>23,807</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--danger-color);">25.07</span>
+                            <span>1,500</span>
+                            <span>37,605</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--danger-color);">25.08</span>
+                            <span>2,250</span>
+                            <span>56,430</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--danger-color);">25.09</span>
+                            <span>1,100</span>
+                            <span>27,599</span>
+                        </div>
+                        <div class="book-row">
+                            <span style="color: var(--danger-color);">25.10</span>
+                            <span>2,800</span>
+                            <span>70,280</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <!-- Trading Panel -->
+            <div class="panel-section">
+                <div class="section-title">
+                    <i class="fas fa-exchange-alt"></i>
+                    تنفيذ الأوامر
+                </div>
+                
+                <div class="trading-tabs">
+                    <button class="tab-btn active" data-type="market">أمر سوق</button>
+                    <button class="tab-btn" data-type="limit">أمر محدد</button>
+                    <button class="tab-btn" data-type="stop">إيقاف خسارة</button>
+                </div>
+
+                <form class="trading-form">
+                    <div class="form-group">
+                        <label class="form-label">السهم المحدد</label>
+                        <input type="text" class="form-input" value="1150.SR - بنك الإنماء" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">الكمية</label>
+                        <input type="number" class="form-input" id="quantity" placeholder="عدد الأسهم" min="1">
+                    </div>
+
+                    <div class="form-group" id="priceGroup" style="display: none;">
+                        <label class="form-label">السعر المحدد</label>
+                        <input type="number" class="form-input" id="price" placeholder="السعر المطلوب" step="0.01">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">القيمة الإجمالية</label>
+                        <input type="text" class="form-input" id="totalValue" placeholder="0.00 ر.س" readonly>
+                    </div>
+
+                    <div class="trade-buttons">
+                        <button type="button" class="trade-btn buy-btn">
+                            <i class="fas fa-arrow-up"></i>
+                            شراء
+                        </button>
+                        <button type="button" class="trade-btn sell-btn">
+                            <i class="fas fa-arrow-down"></i>
+                            بيع
+                        </button>
+                    </div>
+                </form>
+
+                <div style="margin-top: 15px; font-size: 0.85em; color: var(--text-secondary); text-align: center;">
+                    💡 تطبيق تجريبي - الأوامر ليست حقيقية
+                </div>
+            </div>
+
+            <!-- Portfolio Panel -->
+            <div class="panel-section">
+                <div class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    المحفظة الاستثمارية
+                </div>
+                
+                <div class="portfolio-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">القيمة الإجمالية:</span>
+                        <span class="stat-value" style="color: var(--primary-color);">245,670 ر.س</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">الربح/الخسارة اليومي:</span>
+                        <span class="stat-value positive">+3,250 ر.س (+1.34%)</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">السيولة المتاحة:</span>
+                        <span class="stat-value">48,320 ر.س</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">القوة الشرائية:</span>
+                        <span class="stat-value" style="color: var(--warning-color);">96,640 ر.س</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <h4 style="color: var(--text-secondary); margin-bottom: 10px; font-size: 0.95em;">المراكز المفتوحة</h4>
+                </div>
+                
+                <div class="holdings-list">
+                    <div class="holding-item">
+                        <div class="holding-header">
+                            <span>الإنماء (1150)</span>
+                            <span class="positive">+2.1%</span>
+                        </div>
+                        <div class="holding-details">
+                            <span>1,000 سهم</span>
+                            <span>25,050 ر.س</span>
+                        </div>
+                    </div>
+                    
+                    <div class="holding-item" style="border-left-color: var(--danger-color);">
+                        <div class="holding-header">
+                            <span>الراجحي (1120)</span>
+                            <span class="negative">-0.8%</span>
+                        </div>
+                        <div class="holding-details">
+                            <span>500 سهم</span>
+                            <span>45,850 ر.س</span>
+                        </div>
+                    </div>
+                    
+                    <div class="holding-item">
+                        <div class="holding-header">
+                            <span>أرامكو (2222)</span>
+                            <span class="positive">+1.5%</span>
+                        </div>
+                        <div class="holding-details">
+                            <span>2,000 سهم</span>
+                            <span>57,900 ر.س</span>
+                        </div>
+                    </div>
+                    
+                    <div class="holding-item">
+                        <div class="holding-header">
+                            <span>سابك (2010)</span>
+                            <span class="positive">+0.3%</span>
+                        </div>
+                        <div class="holding-details">
+                            <span>800 سهم</span>
+                            <span>44,320 ر.س</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 15px;">
+                    <button style="background: var(--primary-color); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 0.9em;">
+                        <i class="fas fa-chart-pie"></i> تفاصيل المحفظة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Ticker -->
+    <div class="news-ticker">
+        <div class="ticker-content">
+            🔴 عاجل: مؤشر تاسي يرتفع 1.38% بقيادة القطاع المصرفي • الإنماء والراجحي يسجلان مكاسب قوية • حجم التداول يتجاوز 4.2 مليار ريال • أرامكو تعلن نتائج إيجابية للربع الثالث • سابك توقع اتفاقيات جديدة بقيمة 2.5 مليار ريال • البنك المركزي يؤكد استقرار النظام المصرفي • صناديق الاستثمار تواصل ضخ السيولة في السوق...
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="toggleFullscreen()">
+        <i class="fas fa-expand"></i>
+    </div>
+
+    <script>
+        // Global Variables
+        let mainChart = null;
+        let currentSymbol = '1150.SR';
+        let currentTimeframe = '1d';
+        let updateInterval = null;
+
+        const STOCKS_DATA = {
+            '1150.SR': { name: 'بنك الإنماء', icon: 'fas fa-mosque', basePrice: 25.05 },
+            '1120.SR': { name: 'بنك الراجحي', icon: 'fas fa-landmark', basePrice: 91.70 },
+            '1020.SR': { name: 'بنك الجزيرة', icon: 'fas fa-building', basePrice: 18.45 },
+            '2222.SR': { name: 'أرامكو السعودية', icon: 'fas fa-oil-well', basePrice: 28.95 },
+            '2010.SR': { name: 'سابك', icon: 'fas fa-industry', basePrice: 55.40 }
+        };
+
+        // Initialize Platform
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePlatform();
+            startRealTimeUpdates();
+        });
+
+        function initializePlatform() {
+            setupEventListeners();
+            initializeChart();
+            setupTradingForm();
+            showWelcomeMessage();
+        }
+
+        function setupEventListeners() {
+            // Stock selection
+            document.querySelectorAll('.stock-item[data-symbol]').forEach(item => {
+                item.addEventListener('click', function() {
+                    selectStock(this.dataset.symbol, this);
+                });
+            });
+
+            // Timeframe selection
+            document.querySelectorAll('.timeframe-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    selectTimeframe(this.dataset.timeframe, this);
+                });
+            });
+
+            // Order type tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    selectOrderType(this.dataset.type, this);
+                });
+            });
+
+            // Trade buttons
+            document.querySelector('.buy-btn').addEventListener('click', () => executeTrade('buy'));
+            document.querySelector('.sell-btn').addEventListener('click', () => executeTrade('sell'));
+        }
+
+        function selectStock(symbol, element) {
+            // Update active state
+            document.querySelectorAll('.stock-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            currentSymbol = symbol;
+            updateSelectedStock(symbol);
+            updateChart();
+            updateOrderBook();
+            updateTradingForm(symbol);
+        }
+
+        function selectTimeframe(timeframe, element) {
+            document.querySelectorAll('.timeframe-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            currentTimeframe = timeframe;
+            updateChart();
+        }
+
+        function selectOrderType(type, element) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            const priceGroup = document.getElementById('priceGroup');
+            priceGroup.style.display = type === 'market' ? 'none' : 'block';
+        }
+
+        function updateSelectedStock(symbol) {
+            const stock = STOCKS_DATA[symbol];
+            if (stock) {
+                document.getElementById('selectedStock').innerHTML = 
+                    `<i class="${stock.icon}"></i> ${stock.name} (${symbol})`;
+            }
+        }
+
+        function initializeChart() {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            const data = generateChartData();
+            
+            mainChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'السعر',
+                        data: data.prices,
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.2,
+                        pointRadius: 0,
+                        pointHoverRadius: 8,
+                        pointHoverBackgroundColor: '#3b82f6',
+                        pointHoverBorderColor: '#ffffff',
+                        pointHoverBorderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(30, 41, 59, 0.95)',
+                            titleColor: '#e2e8f0',
+                            bodyColor: '#e2e8f0',
+                            borderColor: '#3b82f6',
+                            borderWidth: 2,
+                            cornerRadius: 10,
+                            displayColors: false,
+                            callbacks: {
+                                title: function(context) {
+                                    return `الوقت: ${context[0].label}`;
+                                },
+                                label: function(context) {
+                                    return `السعر: ${context.parsed.y.toFixed(2)} ر.س`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(148, 163, 184, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#94a3b8',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        y: {
+                            position: 'right',
+                            grid: {
+                                color: 'rgba(148, 163, 184, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#94a3b8',
+                                font: {
+                                    size: 11
+                                },
+                                callback: function(value) {
+                                    return value.toFixed(2) + ' ر.س';
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 750,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function generateChartData() {
+            const stock = STOCKS_DATA[currentSymbol];
+            const basePrice = stock ? stock.basePrice : 25.05;
+            const prices = [];
+            const labels = [];
+            
+            let currentPrice = basePrice;
+            
+            for (let i = 0; i < 30; i++) {
+                const change = (Math.random() - 0.5) * 0.6;
+                currentPrice = Math.max(basePrice * 0.95, Math.min(basePrice * 1.05, currentPrice + change));
+                prices.push(currentPrice);
+                
+                const time = new Date();
+                time.setMinutes(time.getMinutes() - (30 - i) * 10);
+                labels.push(time.toLocaleTimeString('ar-SA', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                }));
+            }
+            
+            return { prices, labels };
+        }
+
+        function updateChart() {
+            if (!mainChart) return;
+            
+            const data = generateChartData();
+            mainChart.data.labels = data.labels;
+            mainChart.data.datasets[0].data = data.prices;
+            mainChart.update('none');
+        }
+
+        function updateOrderBook() {
+            const bidRows = document.querySelectorAll('.bids .book-row:not(:first-child)');
+            const askRows = document.querySelectorAll('.asks .book-row:not(:first-child)');
+            
+            bidRows.forEach(row => {
+                const cells = row.querySelectorAll('span');
+                if (cells.length >= 3) {
+                    const price = parseFloat(cells[0].textContent);
+                    const quantity = Math.floor(Math.random() * 3000 + 500);
+                    cells[1].textContent = quantity.toLocaleString();
+                    cells[2].textContent = (price * quantity).toLocaleString();
+                }
+            });
+            
+            askRows.forEach(row => {
+                const cells = row.querySelectorAll('span');
+                if (cells.length >= 3) {
+                    const price = parseFloat(cells[0].textContent);
+                    const quantity = Math.floor(Math.random() * 3000 + 500);
+                    cells[1].textContent = quantity.toLocaleString();
+                    cells[2].textContent = (price * quantity).toLocaleString();
+                }
+            });
+        }
+
+        function setupTradingForm() {
+            const quantityInput = document.getElementById('quantity');
+            const priceInput = document.getElementById('price');
+            const totalInput = document.getElementById('totalValue');
+            
+            function calculateTotal() {
+                const quantity = parseFloat(quantityInput.value) || 0;
+                const stock = STOCKS_DATA[currentSymbol];
+                const price = parseFloat(priceInput.value) || (stock ? stock.basePrice : 25.05);
+                const total = quantity * price;
+                totalInput.value = total.toLocaleString('ar-SA', { 
+                    minimumFractionDigits: 2 
+                }) + ' ر.س';
+            }
+            
+            quantityInput.addEventListener('input', calculateTotal);
+            priceInput.addEventListener('input', calculateTotal);
+        }
+
+        function updateTradingForm(symbol) {
+            const stock = STOCKS_DATA[symbol];
+            if (stock) {
+                document.querySelector('.trading-form input[readonly]').value = 
+                    `${symbol} - ${stock.name}`;
+            }
+        }
+
+        function executeTrade(side) {
+            const quantity = document.getElementById('quantity').value;
+            const priceInput = document.getElementById('price');
+            const stock = STOCKS_DATA[currentSymbol];
+            const price = priceInput.value || (stock ? stock.basePrice.toFixed(2) : '25.05');
+            
+            if (!quantity || quantity <= 0) {
+                showMessage('يرجى إدخال كمية صحيحة', 'error');
+                return;
+            }
+            
+            const orderType = side === 'buy' ? 'شراء' : 'بيع';
+            const confirmation = confirm(
+                `تأكيد أمر ${orderType}\n` +
+                `السهم: ${currentSymbol}\n` +
+                `الكمية: ${quantity}\n` +
+                `السعر: ${price} ر.س\n\n` +
+                `هل تريد المتابعة؟`
+            );
+            
+            if (confirmation) {
+                showOrderExecution(side, quantity, price);
+                clearTradeForm();
+            }
+        }
+
+        function showOrderExecution(side, quantity, price) {
+            const orderType = side === 'buy' ? 'شراء' : 'بيع';
+            const message = `تم تنفيذ أمر ${orderType} ${quantity} سهم بسعر ${price} ر.س`;
+            showMessage(message, 'success');
+        }
+
+        function clearTradeForm() {
+            document.getElementById('quantity').value = '';
+            document.getElementById('totalValue').value = '';
+        }
+
+        function showMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+
+        function startRealTimeUpdates() {
+            updateInterval = setInterval(() => {
+                updateStockPrices();
+                updateMarketStats();
+                updateChart();
+                updateOrderBook();
+            }, 3000);
+        }
+
+        function updateStockPrices() {
+            document.querySelectorAll('.stock-item[data-symbol]').forEach(item => {
+                const priceElement = item.querySelector('.stock-price');
+                const changeElement = item.querySelector('.stock-change');
+                
+                if (priceElement && changeElement) {
+                    const currentPrice = parseFloat(priceElement.textContent);
+                    const change = (Math.random() - 0.5) * 0.2;
+                    const newPrice = Math.max(currentPrice * 0.98, Math.min(currentPrice * 1.02, currentPrice + change));
+                    const changePercent = ((newPrice - currentPrice) / currentPrice) * 100;
+                    
+                    priceElement.textContent = newPrice.toFixed(2);
+                    
+                    const icon = changePercent >= 0 ? 'fa-arrow-up' : 'fa-arrow-down';
+                    const className = changePercent >= 0 ? 'positive' : 'negative';
+                    
+                    changeElement.innerHTML = `
+                        <i class="fas ${icon}"></i>
+                        ${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%
+                    `;
+                    changeElement.className = `stock-change ${className}`;
+                }
+            });
+        }
+
+        function updateMarketStats() {
+            const tasiValue = document.getElementById('tasiValue');
+            const tasiChange = document.getElementById('tasiChange');
+            const headerTasi = document.getElementById('headerTasi');
+            
+            const currentValue = parseFloat(tasiValue.textContent.replace(/,/g, ''));
+            const change = (Math.random() - 0.5) * 30;
+            const newValue = currentValue + change;
+            const changePercent = (change / currentValue) * 100;
+            
+            tasiValue.textContent = newValue.toFixed(2);
+            headerTasi.textContent = Math.floor(newValue).toLocaleString();
+            
+            const changeText = `${change >= 0 ? '+' : ''}${change.toFixed(2)} (${change >= 0 ? '+' : ''}${changePercent.toFixed(2)}%)`;
+            tasiChange.textContent = changeText;
+            tasiChange.className = `card-change ${change >= 0 ? 'positive' : 'negative'}`;
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                document.querySelector('.fab i').className = 'fas fa-compress';
+            } else {
+                document.exitFullscreen();
+                document.querySelector('.fab i').className = 'fas fa-expand';
+            }
+        }
+
+        function showWelcomeMessage() {
+            setTimeout(() => {
+                showMessage('مرحباً بك في منصة التداول السعودي الاحترافية! 🚀', 'success');
+            }, 1000);
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (updateInterval) {
+                clearInterval(updateInterval);
+            }
+        });
+    </script>
+</body>
+</html>
