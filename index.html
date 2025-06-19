@@ -100,234 +100,6 @@
             height: calc(100vh - 100px);
         }
 
-        .calculator-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .calculator-content {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .calculator-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .calculator-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #22C55E;
-        }
-
-        .close-btn {
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            color: #EF4444;
-            border-radius: 10px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .close-btn:hover {
-            background: rgba(239, 68, 68, 0.3);
-        }
-
-        .calc-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .calc-input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .calc-label {
-            font-weight: 600;
-            color: #22C55E;
-        }
-
-        .calc-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 0.8rem;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .calc-input:focus {
-            outline: none;
-            border-color: #22C55E;
-            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
-        }
-
-        .calc-button {
-            background: linear-gradient(135deg, #22C55E, #16A34A);
-            border: none;
-            border-radius: 10px;
-            padding: 1rem;
-            color: white;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .calc-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
-        }
-
-        .calc-results {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .calc-result-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .calc-result-item:last-child {
-            border-bottom: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #22C55E;
-        }
-
-        .chart-type-selector {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .chart-type-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .chart-type-btn.active {
-            background: rgba(34, 197, 94, 0.2);
-            border-color: #22C55E;
-            color: #22C55E;
-        }
-
-        .chart-type-btn:hover {
-            background: rgba(34, 197, 94, 0.15);
-        }
-
-        .profit-calculator-btn {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            background: linear-gradient(135deg, #22C55E, #16A34A);
-            border: none;
-            border-radius: 50px;
-            padding: 1rem 1.5rem;
-            color: white;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
-            transition: all 0.3s ease;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .profit-calculator-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.4);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .history-btn {
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            color: #3B82F6;
-            border-radius: 10px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            width: 100%;
-        }
-
-        .history-btn:hover {
-            background: rgba(59, 130, 246, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .profit-calculator-btn {
-                bottom: 60px;
-                left: 10px;
-                padding: 0.8rem 1.2rem;
-                font-size: 0.9rem;
-            }
-
-            .calculator-content {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            .chart-type-selector {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            .chart-type-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
         .sidebar, .market-info, .chart-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
@@ -642,28 +414,6 @@
             100% { transform: translateX(-100%); }
         }
 
-        .loading-indicator {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(34, 197, 94, 0.3);
-            border-top: 4px solid #22C55E;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         .real-time-badge {
             background: linear-gradient(45deg, #22C55E, #16A34A);
             color: #000;
@@ -707,6 +457,12 @@
             background: rgba(251, 191, 36, 0.2);
             color: #F59E0B;
             border: 1px solid rgba(251, 191, 36, 0.4);
+        }
+
+        .chart-wrapper {
+            height: 400px;
+            width: 100%;
+            position: relative;
         }
 
         @media (max-width: 1400px) {
@@ -765,78 +521,6 @@
             📊 منصة التداول السعودية
             <span class="real-time-badge">مباشر</span>
         </div>
-
-    <!-- حاسبة الأرباح -->
-    <button class="profit-calculator-btn" onclick="openCalculator()">
-        💰 حاسبة الأرباح
-    </button>
-
-    <!-- نافذة حاسبة الأرباح -->
-    <div class="calculator-modal" id="calculatorModal">
-        <div class="calculator-content">
-            <div class="calculator-header">
-                <h3 class="calculator-title">💰 حاسبة الأرباح والخسائر</h3>
-                <button class="close-btn" onclick="closeCalculator()">✕</button>
-            </div>
-            
-            <form class="calc-form" onsubmit="calculateProfit(event)">
-                <div class="calc-input-group">
-                    <label class="calc-label">اسم السهم</label>
-                    <select class="calc-input" id="stockSelect">
-                        <option value="">اختر السهم</option>
-                        <option value="aramco">أرامكو السعودية</option>
-                        <option value="rajhi">مصرف الراجحي</option>
-                        <option value="sabic">سابك</option>
-                        <option value="stc">الاتصالات السعودية</option>
-                        <option value="flynas">طيران ناس</option>
-                        <option value="almarai">المراعي</option>
-                        <option value="ahli">البنك الأهلي</option>
-                        <option value="maaden">معادن</option>
-                    </select>
-                </div>
-
-                <div class="calc-input-group">
-                    <label class="calc-label">سعر الشراء (ريال)</label>
-                    <input type="number" class="calc-input" id="buyPrice" step="0.01" required>
-                </div>
-
-                <div class="calc-input-group">
-                    <label class="calc-label">عدد الأسهم</label>
-                    <input type="number" class="calc-input" id="quantity" required>
-                </div>
-
-                <div class="calc-input-group">
-                    <label class="calc-label">السعر الحالي (ريال)</label>
-                    <input type="number" class="calc-input" id="currentPrice" step="0.01" required>
-                </div>
-
-                <button type="submit" class="calc-button">احسب الأرباح</button>
-                
-                <button type="button" class="history-btn" onclick="showCalculationHistory()">
-                    📊 عرض تاريخ الحسابات
-                </button>
-            </form>
-
-            <div class="calc-results" id="calcResults" style="display: none;">
-                <div class="calc-result-item">
-                    <span>المبلغ المستثمر:</span>
-                    <span id="totalInvestment">0 ريال</span>
-                </div>
-                <div class="calc-result-item">
-                    <span>القيمة الحالية:</span>
-                    <span id="currentValue">0 ريال</span>
-                </div>
-                <div class="calc-result-item">
-                    <span>الربح/الخسارة:</span>
-                    <span id="profitLoss">0 ريال</span>
-                </div>
-                <div class="calc-result-item">
-                    <span>نسبة الربح/الخسارة:</span>
-                    <span id="profitPercentage">0%</span>
-                </div>
-            </div>
-        </div>
-    </div>
         <div class="status-bar">
             <div class="status-item">
                 <div class="status-dot"></div>
@@ -882,165 +566,12 @@
             <div id="active-stocks">
                 <div class="stock-item">
                     <div class="stock-info">
-                        <div class="stock-name">أرامكو السعودية</div>
-                        <div class="stock-sector">طاقة</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">32.85</div>
-                        <div class="index-change positive">+1.23%</div>
-                    </div>
-                </div>
-                <div class="stock-item">
-                    <div class="stock-info">
-                        <div class="stock-name">مصرف الراجحي</div>
-                        <div class="stock-sector">مصارف</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">88.75</div>
-                        <div class="index-change positive">+1.78%</div>
-                    </div>
-                </div>
-                <div class="stock-item">
-                    <div class="stock-info">
                         <div class="stock-name">سابك</div>
-                        <div class="stock-sector">بتروكيماويات</div>
+                        <div class="stock-sector sharia-badge mixed-badge">⚠️ مختلط</div>
                     </div>
                     <div class="stock-price">
                         <div class="price">96.40</div>
                         <div class="index-change positive">+1.90%</div>
-                    </div>
-                </div>
-                <div class="stock-item">
-                    <div class="stock-info">
-                        <div class="stock-name">الاتصالات السعودية</div>
-                        <div class="stock-sector">اتصالات</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">50.25</div>
-                        <div class="index-change positive">+0.80%</div>
-                    </div>
-                </div>
-                <div class="stock-item">
-                    <div class="stock-info">
-                        <div class="stock-name">طيران ناس</div>
-                        <div class="stock-sector">نقل</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">83.60</div>
-                        <div class="index-change positive">+4.50%</div>
-                    </div>
-                </div>
-                <div class="stock-item">
-                    <div class="stock-info">
-                        <div class="stock-name">البنك الأهلي</div>
-                        <div class="stock-sector">مصارف</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">34.90</div>
-                        <div class="index-change positive">+2.35%</div>
-                    </div>
-                </div>
-                <div class="stock-item">
-                    <div class="stock-info">
-                        <div class="stock-name">معادن</div>
-                        <div class="stock-sector">تعدين</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">47.80</div>
-                        <div class="index-change negative">-0.62%</div>
-                    </div>
-                </div>
-                <div class="stock-item">
-                    <div class="stock-info">
-                        <div class="stock-name">المراعي</div>
-                        <div class="stock-sector">أغذية</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">55.25</div>
-                        <div class="index-change positive">+3.15%</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- منطقة الرسم البياني الرئيسية -->
-        <div class="main-chart-area">
-            <div class="chart-container">
-                <div class="chart-type-selector">
-                    <button class="chart-type-btn active" onclick="changeChartType('line')">📈 خطي</button>
-                    <button class="chart-type-btn" onclick="changeChartType('candlestick')">🕯️ شموع</button>
-                </div>
-                <div class="chart-controls">
-                    <button class="control-btn active" onclick="changeTimeframe('1D')">يوم</button>
-                    <button class="control-btn" onclick="changeTimeframe('1W')">أسبوع</button>
-                    <button class="control-btn" onclick="changeTimeframe('1M')">شهر</button>
-                    <button class="control-btn" onclick="changeTimeframe('3M')">3 أشهر</button>
-                    <button class="control-btn" onclick="changeTimeframe('1Y')">سنة</button>
-                </div>
-                <canvas id="mainChart"></canvas>
-                <canvas id="candlestickChart" style="display: none;"></canvas>
-                <div class="loading-indicator" id="loading">
-                    <div class="spinner"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- معلومات السوق -->
-        <div class="market-info">
-            <div class="section-title">📰 أخبار السوق</div>
-            <div id="market-news">
-                <div class="news-item">
-                    <div class="news-title">📈 تاسي يحقق مكاسب قوية بنسبة 1.25%</div>
-                    <div class="news-summary">ارتفع المؤشر العام للسوق السعودي (تاسي) بنسبة 1.25% ليصل إلى 10,847 نقطة، مدعوماً بصعود قطاعي الطاقة والمصارف.</div>
-                    <div class="news-time">⏰ منذ 15 دقيقة</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-title">✈️ طيران ناس يحلق بمكاسب 4.5% في ثاني جلسة</div>
-                    <div class="news-summary">واصلت أسهم شركة طيران ناس تحقيق مكاسب قوية للجلسة الثانية على التوالي بنسبة 4.5% لتصل إلى 83.60 ريال للسهم.</div>
-                    <div class="news-time">⏰ منذ 35 دقيقة</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-title">🏦 الراجحي يرتفع 1.78% بعد النتائج الإيجابية</div>
-                    <div class="news-summary">حقق سهم مصرف الراجحي مكاسب بنسبة 1.78% ليصل إلى 88.75 ريال بعد الإعلان عن نتائج ربعية قوية.</div>
-                    <div class="news-time">⏰ منذ ساعة</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-title">⚡ أرامكو تعلن عن مشروع طاقة متجددة بـ3 مليارات ريال</div>
-                    <div class="news-summary">أعلنت شركة أرامكو السعودية عن استثمار جديد في مشاريع الطاقة المتجددة بقيمة 3 مليارات ريال، مما دفع السهم للارتفاع.</div>
-                    <div class="news-time">⏰ منذ ساعتين</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-title">🏭 سابك توقع اتفاقية شراكة استراتيجية</div>
-                    <div class="news-summary">وقعت شركة سابك اتفاقية شراكة استراتيجية مع شركة عالمية لتطوير منتجات بتروكيماوية متقدمة.</div>
-                    <div class="news-time">⏰ منذ 3 ساعات</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-title">💰 المراعي تستكمل استحواذها على شركة المشروبات</div>
-                    <div class="news-summary">أتمت شركة المراعي بنجاح عملية الاستحواذ على شركة المشروبات النقية بقيمة 1.04 مليار ريال، مما عزز من توقعات النمو.</div>
-                    <div class="news-time">⏰ منذ 4 ساعات</div>
-                </div>
-            </div>
-
-            <div class="section-title" style="margin-top: 2rem;">☪️ الأسهم الشرعية</div>
-            <div id="sharia-stocks">
-                <div class="stock-item">
-                    <div class="stock-info">
-                        <div class="stock-name">مصرف الراجحي</div>
-                        <div class="stock-sector sharia-badge">✅ نقي</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">88.75</div>
-                        <div class="index-change positive">+1.78%</div>
-                    </div>
-                </div>
-                <div class="stock-item">
-                    <div class="stock-info">
-                        <div class="stock-name">الاتصالات السعودية</div>
-                        <div class="stock-sector sharia-badge">✅ نقي</div>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price">32.85</div>
-                        <div class="index-change positive">+1.23%</div>
                     </div>
                 </div>
             </div>
@@ -1160,40 +691,33 @@
             activeStocksContainer.innerHTML = stocksHTML;
         }
 
-        // إنشاء الرسم البياني التفاعلي المحسن
+        // إنشاء الرسم البياني التفاعلي المبسط
         let mainChart;
-        let candlestickChart;
-        let currentChartType = 'line';
 
         function createChart() {
-            createLineChart();
-            createCandlestickChart();
-        }
-
-        function createLineChart() {
             const ctx = document.getElementById('mainChart').getContext('2d');
             
-            // بيانات تاريخية لمؤشر تاسي
+            // بيانات تاريخية مبسطة لمؤشر تاسي
             const labels = [];
             const data = [];
             const baseValue = 10847;
             const now = new Date();
             
-            // إنشاء 100 نقطة بيانات للرسم البياني
-            for (let i = 99; i >= 0; i--) {
-                const date = new Date(now.getTime() - (i * 5 * 60 * 1000)); // كل 5 دقائق
+            // إنشاء 50 نقطة بيانات للرسم البياني
+            for (let i = 49; i >= 0; i--) {
+                const date = new Date(now.getTime() - (i * 10 * 60 * 1000)); // كل 10 دقائق
                 labels.push(date.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' }));
                 
-                // محاكاة تقلبات السوق الطبيعية
-                const trend = Math.sin(i / 20) * 50; // اتجاه عام
-                const noise = (Math.random() - 0.5) * 80; // تقلبات عشوائية
+                // محاكاة تقلبات السوق الطبيعية بشكل مبسط
+                const trend = Math.sin(i / 10) * 30; // اتجاه عام
+                const noise = (Math.random() - 0.5) * 40; // تقلبات عشوائية
                 data.push(baseValue + trend + noise);
             }
 
             // إنشاء تدرج لوني للمنطقة تحت الخط
             const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(34, 197, 94, 0.3)');
-            gradient.addColorStop(0.5, 'rgba(34, 197, 94, 0.15)');
+            gradient.addColorStop(0, 'rgba(34, 197, 94, 0.4)');
+            gradient.addColorStop(0.7, 'rgba(34, 197, 94, 0.1)');
             gradient.addColorStop(1, 'rgba(34, 197, 94, 0.02)');
 
             mainChart = new Chart(ctx, {
@@ -1207,149 +731,13 @@
                         backgroundColor: gradient,
                         borderWidth: 3,
                         fill: true,
-                        tension: 0.4,
+                        tension: 0.3,
                         pointRadius: 0,
                         pointHoverRadius: 8,
                         pointHoverBackgroundColor: '#22C55E',
                         pointHoverBorderColor: '#ffffff',
-                        pointHoverBorderWidth: 3,
-                        shadowColor: 'rgba(34, 197, 94, 0.5)',
-                        shadowBlur: 10
+                        pointHoverBorderWidth: 3
                     }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                            titleColor: '#22C55E',
-                            bodyColor: '#ffffff',
-                            borderColor: '#22C55E',
-                            borderWidth: 1,
-                            cornerRadius: 10,
-                            displayColors: false,
-                            callbacks: {
-                                title: function(context) {
-                                    return 'الوقت: ' + context[0].label;
-                                },
-                                label: function(context) {
-                                    return 'تاسي: ' + context.parsed.y.toLocaleString('ar-SA', {
-                                        minimumFractionDigits: 2,
-                                        maximumFractionDigits: 2
-                                    });
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            display: true,
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)',
-                                drawBorder: false
-                            },
-                            ticks: {
-                                color: 'rgba(255, 255, 255, 0.7)',
-                                maxTicksLimit: 8,
-                                font: {
-                                    size: 11
-                                }
-                            }
-                        },
-                        y: {
-                            display: true,
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)',
-                                drawBorder: false
-                            },
-                            ticks: {
-                                color: 'rgba(255, 255, 255, 0.7)',
-                                callback: function(value) {
-                                    return value.toLocaleString('ar-SA');
-                                },
-                                font: {
-                                    size: 11
-                                }
-                            }
-                        }
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index'
-                    },
-                    animation: {
-                        duration: 2000,
-                        easing: 'easeInOutQuart'
-                    },
-                    elements: {
-                        line: {
-                            borderJoinStyle: 'round'
-                        }
-                    }
-                }
-            });
-        }
-
-        function createCandlestickChart() {
-            const ctx = document.getElementById('candlestickChart').getContext('2d');
-            
-            // بيانات الشموع اليابانية
-            const candleData = generateCandlestickData();
-            
-            candlestickChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: candleData.labels,
-                    datasets: [
-                        {
-                            label: 'أعلى سعر',
-                            data: candleData.high,
-                            backgroundColor: 'transparent',
-                            borderColor: '#22C55E',
-                            borderWidth: 1,
-                            barThickness: 1,
-                            categoryPercentage: 1.0,
-                            barPercentage: 1.0
-                        },
-                        {
-                            label: 'أدنى سعر', 
-                            data: candleData.low,
-                            backgroundColor: 'transparent',
-                            borderColor: '#EF4444',
-                            borderWidth: 1,
-                            barThickness: 1,
-                            categoryPercentage: 1.0,
-                            barPercentage: 1.0
-                        },
-                        {
-                            label: 'الإغلاق',
-                            data: candleData.close.map((close, i) => {
-                                return {
-                                    x: i,
-                                    y: close,
-                                    open: candleData.open[i],
-                                    close: close,
-                                    color: close >= candleData.open[i] ? '#22C55E' : '#EF4444'
-                                };
-                            }),
-                            backgroundColor: function(context) {
-                                const point = context.parsed;
-                                return point.close >= candleData.open[context.dataIndex] ? 
-                                    'rgba(34, 197, 94, 0.8)' : 'rgba(239, 68, 68, 0.8)';
-                            },
-                            borderColor: function(context) {
-                                const point = context.parsed;
-                                return point.close >= candleData.open[context.dataIndex] ? 
-                                    '#22C55E' : '#EF4444';
-                            },
-                            borderWidth: 2,
-                            barThickness: 8
-                        }
-                    ]
                 },
                 options: {
                     responsive: true,
@@ -1365,18 +753,16 @@
                             borderColor: '#22C55E',
                             borderWidth: 1,
                             cornerRadius: 10,
+                            displayColors: false,
                             callbacks: {
                                 title: function(context) {
                                     return 'الوقت: ' + context[0].label;
                                 },
                                 label: function(context) {
-                                    const dataIndex = context.dataIndex;
-                                    return [
-                                        `الافتتاح: ${candleData.open[dataIndex].toFixed(2)}`,
-                                        `الإغلاق: ${candleData.close[dataIndex].toFixed(2)}`,
-                                        `الأعلى: ${candleData.high[dataIndex].toFixed(2)}`,
-                                        `الأدنى: ${candleData.low[dataIndex].toFixed(2)}`
-                                    ];
+                                    return 'تاسي: ' + context.parsed.y.toLocaleString('ar-SA', {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    }) + ' نقطة';
                                 }
                             }
                         }
@@ -1390,7 +776,10 @@
                             },
                             ticks: {
                                 color: 'rgba(255, 255, 255, 0.7)',
-                                maxTicksLimit: 8
+                                maxTicksLimit: 6,
+                                font: {
+                                    size: 10
+                                }
                             }
                         },
                         y: {
@@ -1403,341 +792,84 @@
                                 color: 'rgba(255, 255, 255, 0.7)',
                                 callback: function(value) {
                                     return value.toLocaleString('ar-SA');
+                                },
+                                font: {
+                                    size: 10
                                 }
                             }
                         }
                     },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
                     animation: {
                         duration: 1500,
                         easing: 'easeInOutQuart'
+                    },
+                    elements: {
+                        line: {
+                            borderJoinStyle: 'round'
+                        }
                     }
                 }
             });
         }
 
-        function generateCandlestickData() {
-            const data = {
-                labels: [],
-                open: [],
-                high: [],
-                low: [],
-                close: []
-            };
-
-            let basePrice = 10847;
-            const now = new Date();
-
-            for (let i = 50; i >= 0; i--) {
-                const date = new Date(now.getTime() - (i * 15 * 60 * 1000)); // كل 15 دقيقة
-                data.labels.push(date.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' }));
-
-                // محاكاة بيانات الشموع
-                const openPrice = basePrice + (Math.random() - 0.5) * 20;
-                const volatility = 10 + Math.random() * 15;
-                const high = openPrice + Math.random() * volatility;
-                const low = openPrice - Math.random() * volatility;
-                const closePrice = low + Math.random() * (high - low);
-
-                data.open.push(openPrice);
-                data.high.push(high);
-                data.low.push(low);
-                data.close.push(closePrice);
-
-                basePrice = closePrice; // استخدام سعر الإغلاق كأساس للشمعة التالية
-            }
-
-            return data;
-        }
-
-        // تبديل نوع الرسم البياني
-        function changeChartType(type) {
-            document.querySelectorAll('.chart-type-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            currentChartType = type;
-            
-            if (type === 'line') {
-                document.getElementById('mainChart').style.display = 'block';
-                document.getElementById('candlestickChart').style.display = 'none';
-            } else {
-                document.getElementById('mainChart').style.display = 'none';
-                document.getElementById('candlestickChart').style.display = 'block';
-                
-                // إعادة إنشاء رسم الشموع ببيانات جديدة
-                if (candlestickChart) {
-                    candlestickChart.destroy();
-                }
-                createCandlestickChart();
-            }
-        }
-
-        // تغيير الإطار الزمني مع تحسينات
+        // تغيير الإطار الزمني
         function changeTimeframe(timeframe) {
             document.querySelectorAll('.control-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
             
-            // إظهار مؤشر التحميل مع تأثير أنيق
-            const loading = document.getElementById('loading');
-            loading.style.display = 'block';
-            
             setTimeout(() => {
                 updateChartData(timeframe);
-                loading.style.display = 'none';
-            }, 1200);
+            }, 300);
         }
 
         // تحديث بيانات الرسم البياني
         function updateChartData(timeframe) {
+            if (!mainChart) return;
+            
             const config = {
-                '1D': { points: 100, interval: 5, baseValue: 10847 },
-                '1W': { points: 80, interval: 30, baseValue: 10800 },
-                '1M': { points: 60, interval: 120, baseValue: 10750 },
-                '3M': { points: 45, interval: 480, baseValue: 10600 },
-                '1Y': { points: 50, interval: 2880, baseValue: 10200 }
+                '1D': { points: 50, interval: 10, baseValue: 10847 },
+                '1W': { points: 35, interval: 60, baseValue: 10800 },
+                '1M': { points: 30, interval: 480, baseValue: 10750 },
+                '3M': { points: 25, interval: 1440, baseValue: 10600 },
+                '1Y': { points: 20, interval: 10080, baseValue: 10200 }
             };
             
             const { points, interval, baseValue } = config[timeframe];
+            const newData = [];
+            const newLabels = [];
+            const now = new Date();
             
-            if (currentChartType === 'line' && mainChart) {
-                const newData = [];
-                const newLabels = [];
-                const now = new Date();
+            for (let i = points - 1; i >= 0; i--) {
+                const date = new Date(now.getTime() - (i * interval * 60 * 1000));
                 
-                for (let i = points - 1; i >= 0; i--) {
-                    const date = new Date(now.getTime() - (i * interval * 60 * 1000));
-                    
-                    // تنسيق التاريخ حسب الإطار الزمني
-                    let label;
-                    if (timeframe === '1D') {
-                        label = date.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' });
-                    } else if (timeframe === '1W') {
-                        label = date.toLocaleDateString('ar-SA', { weekday: 'short' });
-                    } else {
-                        label = date.toLocaleDateString('ar-SA', { month: 'short', day: 'numeric' });
-                    }
-                    
-                    newLabels.push(label);
-                    
-                    // محاكاة بيانات متقدمة حسب الإطار الزمني
-                    const trend = Math.sin(i / (points / 4)) * (baseValue * 0.05);
-                    const seasonality = Math.sin(i / (points / 12)) * (baseValue * 0.02);
-                    const noise = (Math.random() - 0.5) * (baseValue * 0.03);
-                    
-                    newData.push(baseValue + trend + seasonality + noise);
+                // تنسيق التاريخ حسب الإطار الزمني
+                let label;
+                if (timeframe === '1D') {
+                    label = date.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' });
+                } else if (timeframe === '1W') {
+                    label = date.toLocaleDateString('ar-SA', { weekday: 'short' });
+                } else {
+                    label = date.toLocaleDateString('ar-SA', { month: 'short', day: 'numeric' });
                 }
                 
-                mainChart.data.datasets[0].data = newData;
-                mainChart.data.labels = newLabels;
-                mainChart.update('active');
-            } else if (currentChartType === 'candlestick' && candlestickChart) {
-                // تحديث بيانات الشموع
-                candlestickChart.destroy();
-                createCandlestickChart();
-            }
-        }
-
-        // فتح حاسبة الأرباح
-        function openCalculator() {
-            document.getElementById('calculatorModal').style.display = 'flex';
-            
-            // تحديث الأسعار الحالية تلقائياً
-            const stockSelect = document.getElementById('stockSelect');
-            const currentPriceInput = document.getElementById('currentPrice');
-            
-            stockSelect.addEventListener('change', function() {
-                const selectedStock = this.value;
-                if (selectedStock && stockData[selectedStock]) {
-                    currentPriceInput.value = stockData[selectedStock].price.toFixed(2);
-                }
-            });
-        }
-
-        // إغلاق حاسبة الأرباح
-        function closeCalculator() {
-            document.getElementById('calculatorModal').style.display = 'none';
-            document.getElementById('calcResults').style.display = 'none';
-            document.querySelector('.calc-form').reset();
-        }
-
-        // حساب الأرباح والخسائر
-        function calculateProfit(event) {
-            event.preventDefault();
-            
-            const buyPrice = parseFloat(document.getElementById('buyPrice').value);
-            const quantity = parseInt(document.getElementById('quantity').value);
-            const currentPrice = parseFloat(document.getElementById('currentPrice').value);
-            
-            if (!buyPrice || !quantity || !currentPrice) {
-                alert('يرجى ملء جميع الحقول');
-                return;
-            }
-            
-            // الحسابات
-            const totalInvestment = buyPrice * quantity;
-            const currentValue = currentPrice * quantity;
-            const profitLoss = currentValue - totalInvestment;
-            const profitPercentage = ((profitLoss / totalInvestment) * 100);
-            
-            // عرض النتائج
-            document.getElementById('totalInvestment').textContent = 
-                totalInvestment.toLocaleString('ar-SA', { minimumFractionDigits: 2 }) + ' ريال';
-            
-            document.getElementById('currentValue').textContent = 
-                currentValue.toLocaleString('ar-SA', { minimumFractionDigits: 2 }) + ' ريال';
-            
-            const profitLossElement = document.getElementById('profitLoss');
-            const profitPercentageElement = document.getElementById('profitPercentage');
-            
-            profitLossElement.textContent = 
-                (profitLoss >= 0 ? '+' : '') + profitLoss.toLocaleString('ar-SA', { minimumFractionDigits: 2 }) + ' ريال';
-            
-            profitPercentageElement.textContent = 
-                (profitPercentage >= 0 ? '+' : '') + profitPercentage.toFixed(2) + '%';
-            
-            // تلوين النتائج
-            const color = profitLoss >= 0 ? '#22C55E' : '#EF4444';
-            profitLossElement.style.color = color;
-            profitPercentageElement.style.color = color;
-            
-            // إظهار النتائج مع تأثير انيميشن
-            const resultsDiv = document.getElementById('calcResults');
-            resultsDiv.style.display = 'block';
-            resultsDiv.style.opacity = '0';
-            resultsDiv.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                resultsDiv.style.transition = 'all 0.5s ease';
-                resultsDiv.style.opacity = '1';
-                resultsDiv.style.transform = 'translateY(0)';
-            }, 100);
-            
-            // حفظ الحساب في التاريخ (محاكاة)
-            saveCalculationHistory({
-                stock: document.getElementById('stockSelect').value,
-                buyPrice,
-                quantity,
-                currentPrice,
-                profitLoss,
-                profitPercentage,
-                date: new Date().toLocaleString('ar-SA')
-            });
-        }
-
-        // حفظ تاريخ الحسابات
-        function saveCalculationHistory(calculation) {
-            let history = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
-            history.unshift(calculation);
-            
-            // الاحتفاظ بآخر 10 حسابات فقط
-            if (history.length > 10) {
-                history = history.slice(0, 10);
-            }
-            
-            localStorage.setItem('calculationHistory', JSON.stringify(history));
-        }
-
-        // عرض تاريخ الحسابات
-        function showCalculationHistory() {
-            const history = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
-            
-            if (history.length === 0) {
-                alert('لا يوجد تاريخ حسابات بعد');
-                return;
-            }
-            
-            let historyHTML = '<h4 style="color: #22C55E; margin-bottom: 1rem;">📊 تاريخ الحسابات</h4>';
-            
-            history.forEach((calc, index) => {
-                const profitColor = calc.profitLoss >= 0 ? '#22C55E' : '#EF4444';
-                historyHTML += `
-                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-bottom: 0.5rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <strong>${calc.stock || 'غير محدد'}</strong>
-                            <span style="font-size: 0.8rem; opacity: 0.7;">${calc.date}</span>
-                        </div>
-                        <div style="font-size: 0.9rem;">
-                            الكمية: ${calc.quantity} سهم | سعر الشراء: ${calc.buyPrice.toFixed(2)} ريال
-                        </div>
-                        <div style="color: ${profitColor}; font-weight: bold;">
-                            الربح/الخسارة: ${calc.profitLoss.toFixed(2)} ريال (${calc.profitPercentage.toFixed(2)}%)
-                        </div>
-                    </div>
-                `;
-            });
-            
-            // إنشاء نافذة منبثقة لعرض التاريخ
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center;
-                z-index: 1001; backdrop-filter: blur(10px);
-            `;
-            
-            modal.innerHTML = `
-                <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); 
-                           border-radius: 20px; padding: 2rem; max-width: 500px; width: 90%; 
-                           max-height: 80vh; overflow-y: auto; border: 1px solid rgba(34,197,94,0.3);">
-                    ${historyHTML}
-                    <button onclick="this.closest('.modal').remove()" 
-                            style="background: linear-gradient(135deg, #22C55E, #16A34A); border: none; 
-                                   border-radius: 10px; padding: 0.8rem 1.5rem; color: white; 
-                                   font-weight: bold; cursor: pointer; width: 100%; margin-top: 1rem;">
-                        إغلاق
-                    </button>
-                </div>
-            `;
-            
-            modal.className = 'modal';
-            document.body.appendChild(modal);
-        }
-
-        // إضافة تأثيرات الحركة للعناصر
-        function addAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            });
-
-            document.querySelectorAll('.stock-item, .news-item, .index-card').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.6s ease';
-                observer.observe(el);
-            });
-        }
-
-        // معالجة الأحداث للأجهزة المحمولة
-        function setupMobileInteractions() {
-            let touchStartX = 0;
-            let touchStartY = 0;
-
-            document.addEventListener('touchstart', function(e) {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-            }, { passive: true });
-
-            document.addEventListener('touchmove', function(e) {
-                if (!touchStartX || !touchStartY) return;
+                newLabels.push(label);
                 
-                let touchEndX = e.touches[0].clientX;
-                let touchEndY = e.touches[0].clientY;
+                // محاكاة بيانات أبسط حسب الإطار الزمني
+                const trend = Math.sin(i / (points / 3)) * (baseValue * 0.03);
+                const noise = (Math.random() - 0.5) * (baseValue * 0.02);
                 
-                let diffX = touchStartX - touchEndX;
-                let diffY = touchStartY - touchEndY;
-                
-                // منع التمرير الأفقي غير المرغوب فيه
-                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                    e.preventDefault();
-                }
-            }, { passive: false });
+                newData.push(baseValue + trend + noise);
+            }
+            
+            mainChart.data.datasets[0].data = newData;
+            mainChart.data.labels = newLabels;
+            mainChart.update('active');
         }
 
         // تشغيل التطبيق
@@ -1746,18 +878,16 @@
             updateTime();
             createChart();
             updateActiveStocks();
-            addAnimations();
-            setupMobileInteractions();
             
             // تحديث الوقت كل ثانية
             setInterval(updateTime, 1000);
             
-            // تحديث البيانات كل 3 ثواني لمحاكاة البيانات المباشرة
-            setInterval(updateLiveData, 3000);
+            // تحديث البيانات كل 5 ثواني
+            setInterval(updateLiveData, 5000);
             
-            // تحديث الرسم البياني كل 15 ثانية
+            // تحديث الرسم البياني كل 20 ثانية
             setInterval(() => {
-                if (currentChartType === 'line' && mainChart) {
+                if (mainChart) {
                     const activeBtn = document.querySelector('.control-btn.active');
                     if (activeBtn) {
                         const timeframe = activeBtn.textContent.includes('يوم') ? '1D' :
@@ -1766,25 +896,11 @@
                                         activeBtn.textContent.includes('3') ? '3M' : '1Y';
                         updateChartData(timeframe);
                     }
-                } else if (currentChartType === 'candlestick' && candlestickChart) {
-                    // تحديث بيانات الشموع
-                    const newCandleData = generateCandlestickData();
-                    candlestickChart.data.labels = newCandleData.labels;
-                    candlestickChart.data.datasets[2].data = newCandleData.close.map((close, i) => {
-                        return {
-                            x: i,
-                            y: close,
-                            open: newCandleData.open[i],
-                            close: close,
-                            color: close >= newCandleData.open[i] ? '#22C55E' : '#EF4444'
-                        };
-                    });
-                    candlestickChart.update('none');
                 }
-            }, 15000);
+            }, 20000);
 
             // إضافة تأثير النقر للأزرار
-            document.querySelectorAll('.control-btn, .chart-type-btn').forEach(btn => {
+            document.querySelectorAll('.control-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     this.style.transform = 'scale(0.95)';
                     setTimeout(() => {
@@ -1792,53 +908,178 @@
                     }, 150);
                 });
             });
-
-            // إضافة اختصارات لوحة المفاتيح
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeCalculator();
-                }
-                if (e.key === 'c' && e.ctrlKey) {
-                    openCalculator();
-                    e.preventDefault();
-                }
-            });
-
-            // تحسين تجربة النقر على الأجهزة المحمولة
-            document.querySelectorAll('.stock-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.98)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
-                });
-            });
         });
-
-        // إضافة تأثيرات صوتية (اختيارية)
-        function playClickSound() {
-            // يمكن إضافة ملف صوتي للنقرات
-            // const audio = new Audio('click.mp3');
-            // audio.play().catch(() => {});
-        }
-
-        // حفظ تفضيلات المستخدم
-        function saveUserPreferences() {
-            const activeTimeframe = document.querySelector('.control-btn.active')?.textContent;
-            localStorage.setItem('preferredTimeframe', activeTimeframe);
-        }
-
-        // استرداد تفضيلات المستخدم
-        function loadUserPreferences() {
-            const savedTimeframe = localStorage.getItem('preferredTimeframe');
-            if (savedTimeframe) {
-                document.querySelectorAll('.control-btn').forEach(btn => {
-                    if (btn.textContent === savedTimeframe) {
-                        btn.click();
-                    }
-                });
-            }
-        }
     </script>
 </body>
-</html>
+</html><div class="stock-name">أرامكو السعودية</div>
+                        <div class="stock-sector">طاقة</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">32.85</div>
+                        <div class="index-change positive">+1.23%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">مصرف الراجحي</div>
+                        <div class="stock-sector">مصارف</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">88.75</div>
+                        <div class="index-change positive">+1.78%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">سابك</div>
+                        <div class="stock-sector">بتروكيماويات</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">96.40</div>
+                        <div class="index-change positive">+1.90%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">الاتصالات السعودية</div>
+                        <div class="stock-sector">اتصالات</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">50.25</div>
+                        <div class="index-change positive">+0.80%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">طيران ناس</div>
+                        <div class="stock-sector">نقل</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">83.60</div>
+                        <div class="index-change positive">+4.50%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">البنك الأهلي</div>
+                        <div class="stock-sector">مصارف</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">34.90</div>
+                        <div class="index-change positive">+2.35%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">معادن</div>
+                        <div class="stock-sector">تعدين</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">47.80</div>
+                        <div class="index-change negative">-0.62%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">المراعي</div>
+                        <div class="stock-sector">أغذية</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">55.25</div>
+                        <div class="index-change positive">+3.15%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- منطقة الرسم البياني الرئيسية -->
+        <div class="main-chart-area">
+            <div class="chart-container">
+                <div class="chart-controls">
+                    <button class="control-btn active" onclick="changeTimeframe('1D')">يوم</button>
+                    <button class="control-btn" onclick="changeTimeframe('1W')">أسبوع</button>
+                    <button class="control-btn" onclick="changeTimeframe('1M')">شهر</button>
+                    <button class="control-btn" onclick="changeTimeframe('3M')">3 أشهر</button>
+                    <button class="control-btn" onclick="changeTimeframe('1Y')">سنة</button>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="mainChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- معلومات السوق -->
+        <div class="market-info">
+            <div class="section-title">📰 أخبار السوق</div>
+            <div id="market-news">
+                <div class="news-item">
+                    <div class="news-title">📈 تاسي يحقق مكاسب قوية بنسبة 1.25%</div>
+                    <div class="news-summary">ارتفع المؤشر العام للسوق السعودي (تاسي) بنسبة 1.25% ليصل إلى 10,847 نقطة، مدعوماً بصعود قطاعي الطاقة والمصارف.</div>
+                    <div class="news-time">⏰ منذ 15 دقيقة</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">✈️ طيران ناس يحلق بمكاسب 4.5% في ثاني جلسة</div>
+                    <div class="news-summary">واصلت أسهم شركة طيران ناس تحقيق مكاسب قوية للجلسة الثانية على التوالي بنسبة 4.5% لتصل إلى 83.60 ريال للسهم.</div>
+                    <div class="news-time">⏰ منذ 35 دقيقة</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">🏦 الراجحي يرتفع 1.78% بعد النتائج الإيجابية</div>
+                    <div class="news-summary">حقق سهم مصرف الراجحي مكاسب بنسبة 1.78% ليصل إلى 88.75 ريال بعد الإعلان عن نتائج ربعية قوية.</div>
+                    <div class="news-time">⏰ منذ ساعة</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">⚡ أرامكو تعلن عن مشروع طاقة متجددة بـ3 مليارات ريال</div>
+                    <div class="news-summary">أعلنت شركة أرامكو السعودية عن استثمار جديد في مشاريع الطاقة المتجددة بقيمة 3 مليارات ريال، مما دفع السهم للارتفاع.</div>
+                    <div class="news-time">⏰ منذ ساعتين</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">🏭 سابك توقع اتفاقية شراكة استراتيجية</div>
+                    <div class="news-summary">وقعت شركة سابك اتفاقية شراكة استراتيجية مع شركة عالمية لتطوير منتجات بتروكيماوية متقدمة.</div>
+                    <div class="news-time">⏰ منذ 3 ساعات</div>
+                </div>
+            </div>
+
+            <div class="section-title" style="margin-top: 2rem;">☪️ الأسهم الشرعية</div>
+            <div id="sharia-stocks">
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">مصرف الراجحي</div>
+                        <div class="stock-sector sharia-badge">✅ نقي</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">88.75</div>
+                        <div class="index-change positive">+1.78%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">الاتصالات السعودية</div>
+                        <div class="stock-sector sharia-badge">✅ نقي</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">50.25</div>
+                        <div class="index-change positive">+0.80%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">أسمنت العربية</div>
+                        <div class="stock-sector sharia-badge">✅ نقي</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">43.75</div>
+                        <div class="index-change positive">+2.24%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
+                        <div class="stock-name">المراعي</div>
+                        <div class="stock-sector sharia-badge">✅ نقي</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">55.25</div>
+                        <div class="index-change positive">+3.15%</div>
+                    </div>
+                </div>
+                <div class="stock-item">
+                    <div class="stock-info">
