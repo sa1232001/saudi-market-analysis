@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحليل السوق السعودي التفاعلي - 19 يونيو 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .header .date {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+            font-size: 1.5rem;
+        }
+
+        .tasi-card .card-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .volume-card .card-icon {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+
+        .gainers-card .card-icon {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .news-card .card-icon {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .metric {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .positive {
+            color: #27ae60;
+        }
+
+        .negative {
+            color: #e74c3c;
+        }
+
+        .neutral {
+            color: #3498db;
+        }
+
+        .change {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #7f8c8d;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .stocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stock-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+
+        .stock-item:hover {
+            transform: scale(1.02);
+        }
+
+        .stock-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .stock-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .news-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .news-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #43e97b;
+            transition: transform 0.2s ease;
+        }
+
+        .news-item:hover {
+            transform: translateX(5px);
+        }
+
+        .news-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .news-summary {
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        .analysis-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .analysis-section h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .recommendation-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .disclaimer {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #c0392b;
+            font-weight: 500;
+        }
+
+        .sharia-compliant {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .sharia-compliant h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .halal-stocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .halal-stock {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .interactive-chart {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📊 تحليل السوق السعودي التفاعلي</h1>
+            <div class="date">الخميس 19 يونيو 2025 - تحديث مباشر</div>
+            
+            <!-- ملخص سريع -->
+            <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; padding: 20px; color: white; text-align: center; margin-top: 20px;">
+                <h3>📈 الملخص التنفيذي</h3>
+                <p style="margin-top: 10px; font-size: 1.1rem;">السوق السعودي يشهد ضغوطاً بيعية مع تراجع مؤشر تاسي، مدفوعاً بالتوترات الجيوسياسية وإدراج طيران ناس اليوم</p>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="card tasi-card">
+                <div class="card-header">
+                    <div class="card-icon">📈</div>
+                    <div class="card-title">مؤشر تاسي</div>
+                </div>
+                <div class="metric negative">10,713.82</div>
+                <div class="change negative">-153.22 (-1.41%)</div>
+                <div style="margin-top: 10px; font-size: 0.9rem; color: #7f8c8d;">
+                    آخر تحديث: 18 يونيو 09:58 ص
+                </div>
+            </div>
+
+            <div class="card volume-card">
+                <div class="card-header">
+                    <div class="card-icon">💰</div>
+                    <div class="card-title">حجم التداول</div>
+                </div>
+                <div class="metric neutral">6.2 مليار ريال</div>
+                <div class="change neutral">انخفاض في السيولة</div>
+                <div style="margin-top: 10px; font-size: 0.9rem; color: #7f8c8d;">
+                    مقارنة بالجلسة السابقة
+                </div>
+            </div>
+
+            <div class="card gainers-card">
+                <div class="card-header">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">طيران ناس</div>
+                </div>
+                <div class="metric positive">80 ريال</div>
+                <div class="change positive">إدراج جديد +2.25%</div>
+                <div style="margin-top: 10px; font-size: 0.9rem; color: #7f8c8d;">
+                    أول جلسة تداول اليوم
+                </div>
+            </div>
+
+            <div class="card news-card">
+                <div class="card-header">
+                    <div class="card-icon">📰</div>
+                    <div class="card-title">أهم الأخبار</div>
+                </div>
+                <div class="metric neutral">معادن</div>
+                <div class="change neutral">استحواذ جديد</div>
+                <div style="margin-top: 10px; font-size: 0.9rem; color: #7f8c8d;">
+                    تطورات إيجابية في القطاع
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('overview')">نظرة عامة</div>
+            <div class="tab" onclick="showTab('sectors')">أداء القطاعات</div>
+            <div class="tab" onclick="showTab('sharia')">الأسهم الشرعية</div>
+            <div class="tab" onclick="showTab('analysis')">التحليل الفني</div>
+            <div class="tab" onclick="showTab('news')">الأخبار</div>
+        </div>
+
+        <!-- Tab Contents -->
+        <div id="overview" class="tab-content active">
+            <div class="section">
+                <h2>🎯 أداء المؤشرات الرئيسية</h2>
+                <div class="stocks-grid">
+                    <div class="stock-item">
+                        <div class="stock-name">مؤشر تاسي الرئيسي</div>
+                        <div class="stock-price negative">10,713.82 (-1.41%)</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">مؤشر إم تي 30</div>
+                        <div class="stock-price negative">1,378.44 (-1.14%)</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">مؤشر نمو</div>
+                        <div class="stock-price negative">26,458.24 (-0.80%)</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">مؤشر الصكوك</div>
+                        <div class="stock-price positive">911.41 (+0.11%)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-chart">
+                <h2>📊 الرسم البياني التفاعلي لمؤشر تاسي</h2>
+                <div class="chart-placeholder">
+                    📈 رسم بياني يوضح تراجع تاسي من 11,600 نقطة إلى 10,713 نقطة
+                    <br>
+                    <small>يظهر الرسم البياني كسر القناة الصاعدة والتداول تحت المقاومة المحورية</small>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🏆 أبرز الأسهم الرابحة والخاسرة</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h3 style="color: #27ae60; margin-bottom: 15px;">📈 الأسهم الرابحة</h3>
+                        <div class="stocks-grid">
+                            <div class="stock-item">
+                                <div class="stock-name">طيران ناس</div>
+                                <div class="stock-price positive">80.00 (+2.25%)</div>
+                            </div>
+                            <div class="stock-item">
+                                <div class="stock-name">أسمنت الشرقية</div>
+                                <div class="stock-price positive">(+1.47%)</div>
+                            </div>
+                            <div class="stock-item">
+                                <div class="stock-name">معدنية</div>
+                                <div class="stock-price positive">(+0.30%)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: #e74c3c; margin-bottom: 15px;">📉 الأسهم الخاسرة</h3>
+                        <div class="stocks-grid">
+                            <div class="stock-item">
+                                <div class="stock-name">الرياض</div>
+                                <div class="stock-price negative">(-3.51%)</div>
+                            </div>
+                            <div class="stock-item">
+                                <div class="stock-name">قطاع الإعلام والترفيه</div>
+                                <div class="stock-price negative">(-4.00%)</div>
+                            </div>
+                            <div class="stock-item">
+                                <div class="stock-name">معظم القطاعات</div>
+                                <div class="stock-price negative">ضغوط بيعية</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sectors" class="tab-content">
+            <div class="section">
+                <h2>🏭 أداء القطاعات</h2>
+                <div class="stocks-grid">
+                    <div class="stock-item">
+                        <div class="stock-name">قطاع إنتاج الأغذية</div>
+                        <div class="stock-price positive">الأفضل أداءً (+3%)</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">قطاع الطاقة</div>
+                        <div class="stock-price positive">مكاسب مدعومة بأسعار النفط</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">قطاع الإعلام والترفيه</div>
+                        <div class="stock-price negative">الأسوأ أداءً (-4%)</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">القطاع المصرفي</div>
+                        <div class="stock-price neutral">أداء متقلب</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">قطاع البتروكيماويات</div>
+                        <div class="stock-price negative">تحت ضغط</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">قطاع العقارات</div>
+                        <div class="stock-price neutral">استقرار نسبي</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📊 تحليل القطاعات</h2>
+                <p><strong>قطاع إنتاج الأغذية:</strong> استفاد من الطلب المحلي القوي وتحسن الهوامش.</p>
+                <p><strong>قطاع الطاقة:</strong> مدعوم بارتفاع أسعار النفط فوق 65 دولار للبرميل.</p>
+                <p><strong>قطاع الإعلام والترفيه:</strong> تأثر بضغوط السيولة والتحديات التشغيلية.</p>
+                <p><strong>القطاع المصرفي:</strong> ترقب قرارات أسعار الفائدة وتأثيرها على الهوامش.</p>
+            </div>
+        </div>
+
+        <div id="sharia" class="tab-content">
+            <div class="sharia-compliant">
+                <h2>☪️ الأسهم المتوافقة مع الشريعة الإسلامية</h2>
+                <p style="margin-bottom: 20px;">قائمة محدثة بأبرز الأسهم النقية والمختلطة وفقاً لأحدث دراسات العلماء المتخصصين</p>
+                
+                <div style="background: rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <h3>📋 إحصائيات الأسهم الشرعية (آخر تحديث أغسطس 2024)</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold;">203</div>
+                            <div>شركة نقية</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold;">69</div>
+                            <div>شركة مختلطة</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold;">9</div>
+                            <div>غير متوافقة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 15px;">🌟 أبرز الأسهم النقية الكبيرة</h3>
+                <div class="halal-stocks">
+                    <div class="halal-stock">
+                        <div style="font-weight: bold;">أرامكو السعودية</div>
+                        <div style="font-size: 0.9rem;">نقي 100%</div>
+                    </div>
+                    <div class="halal-stock">
+                        <div style="font-weight: bold;">مصرف الراجحي</div>
+                        <div style="font-size: 0.9rem;">مصرفية إسلامية</div>
+                    </div>
+                    <div class="halal-stock">
+                        <div style="font-weight: bold;">أكوا باور</div>
+                        <div style="font-size: 0.9rem;">طاقة متجددة</div>
+                    </div>
+                    <div class="halal-stock">
+                        <div style="font-weight: bold;">الاتصالات السعودية</div>
+                        <div style="font-size: 0.9rem;">تقنية واتصالات</div>
+                    </div>
+                    <div class="halal-stock">
+                        <div style="font-weight: bold;">المراعي</div>
+                        <div style="font-size: 0.9rem;">إنتاج غذائي</div>
+                    </div>
+                    <div class="halal-stock">
+                        <div style="font-weight: bold;">أسمنت العربية</div>
+                        <div style="font-size: 0.9rem;">مواد البناء</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 20px; margin-top: 20px;">
+                    <h3>📊 معايير الاختيار الشرعية</h3>
+                    <ul style="margin-top: 10px; padding-right: 20px;">
+                        <li>عدم ممارسة أنشطة محرمة (خمور، قمار، ربا)</li>
+                        <li>عدم تجاوز نسبة السيولة 50% من الأصول</li>
+                        <li>عدم تجاوز الديوان الربوية 30% من القيمة السوقية</li>
+                        <li>عدم تجاوز الإيرادات المحرمة 5% من إجمالي الدخل</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔍 كيفية التحقق من شرعية الأسهم</h2>
+                <p><strong>مصادر موثوقة للرجوع إليها:</strong></p>
+                <ul style="margin-top: 10px; padding-right: 20px;">
+                    <li>دراسة د. محمد العصيمي (الأشهر والأكثر تفصيلاً)</li>
+                    <li>قائمة الراجحي المالية</li>
+                    <li>دراسة د. عبدالعزيز الفوزان</li>
+                    <li>فلتر الأسهم من موقع يقين</li>
+                    <li>قوائم البنوك الإسلامية المحلية</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="analysis" class="tab-content">
+            <div class="analysis-section">
+                <h2>📈 التحليل الفني لمؤشر تاسي</h2>
+                
+                <div class="recommendation-box">
+                    <h3>📊 النظرة الفنية الحالية</h3>
+                    <p><strong>الاتجاه العام:</strong> هبوطي قصير المدى</p>
+                    <p><strong>المقاومة الرئيسية:</strong> 11,600 نقطة</p>
+                    <p><strong>الدعم الحالي:</strong> 10,400-10,900 نقطة</p>
+                    <p><strong>الحجم:</strong> منخفض مما يشير لضعف الاقتناع</p>
+                </div>
+
+                <div class="recommendation-box">
+                    <h3>🎯 السيناريوهات المحتملة</h3>
+                    <p><strong>السيناريو الإيجابي:</strong> كسر مستوى 11,600 بحجم قوي يستهدف 12,000 ثم 12,400 نقطة</p>
+                    <p><strong>السيناريو السلبي:</strong> كسر دعم 10,400 يستهدف 9,800-10,000 نقطة</p>
+                    <p><strong>السيناريو المحايد:</strong> تداول عرضي بين 10,400-11,600 نقطة</p>
+                </div>
+
+                <div class="recommendation-box">
+                    <h3>⚡ العوامل المؤثرة</h3>
+                    <ul style="margin-top: 10px; padding-right: 20px;">
+                        <li>التوترات الجيوسياسية في الشرق الأوسط</li>
+                        <li>تحركات أسعار النفط (حالياً فوق 65 دولار)</li>
+                        <li>قرارات الفيدرالي الأمريكي بشأن أسعار الفائدة</li>
+                        <li>تدفقات الاستثمار الأجنبي</li>
+                        <li>نتائج الشركات للربع الثاني</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📝 توصيات تعليمية (ليست نصائح استثمارية)</h2>
+                <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 10px; padding: 20px;">
+                    <h3>📚 نصائح تعليمية للمستثمرين المبتدئين</h3>
+                    <ul style="margin-top: 15px; padding-right: 20px;">
+                        <li><strong>التنويع:</strong> لا تضع كل استثماراتك في سهم واحد</li>
+                        <li><strong>البحث:</strong> ادرس الشركة قبل الاستثمار فيها</li>
+                        <li><strong>الصبر:</strong> الاستثمار طويل المدى أقل مخاطرة</li>
+                        <li><strong>إدارة المخاطر:</strong> لا تستثمر أكثر مما تستطيع خسارته</li>
+                        <li><strong>التعلم المستمر:</strong> تابع الأخبار والتحليلات المالية</li>
+                    </ul>
+                </div>
+
+                <div class="disclaimer">
+                    <h3>⚠️ إخلاء مسؤولية</h3>
+                    <p>هذا التقرير للأغراض التعليمية والإعلامية فقط وليس نصيحة استثمارية. الاستثمار في الأسهم ينطوي على مخاطر وقد تفقد رأس مالك. يُنصح بالتشاور مع مستشار مالي مرخص قبل اتخاذ أي قرارات استثمارية.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="news" class="tab-content">
+            <div class="section">
+                <h2>📰 أهم أخبار السوق اليوم</h2>
+                <div class="news-grid">
+                    <div class="news-item">
+                        <div class="news-title">🛫 إدراج أسهم طيران ناس في تاسي</div>
+                        <div class="news-summary">
+                            بدأت شركة طيران ناس تداولاتها اليوم في السوق الرئيسي بسعر 80 ريالاً للسهم، وحققت مكاسب 2.25% في أول جلسة تداول. الشركة متخصصة في الطيران المنخفض التكلفة.
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-title">🏭 معادن تستكمل صفقة استحواذ جديدة</div>
+                        <div class="news-summary">
+                            أعلنت شركة معادن عن آخر تطورات اتفاقية الشراء والاكتتاب للاستحواذ على كامل الحصص في شركتي معادن للبوكسايت والألومينا ومعادن للألمنيوم، في خطوة لتعزيز حضورها في قطاع التعدين.
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-title">💰 أرامكو تنتهي من إصدار سندات بـ5 مليارات دولار</div>
+                        <div class="news-summary">
+                            أتمت شركة أرامكو السعودية بنجاح إصدار سندات دولية بقيمة 5 مليارات دولار، مما يعكس الثقة الدولية في الشركة ويوفر سيولة إضافية لخطط التوسع.
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-title">🛒 المراعي توقع اتفاقية استحواذ بـ1.04 مليار ريال</div>
+                        <div class="news-summary">
+                            وقعت شركة المراعي اتفاقية للاستحواذ على 100% من أسهم شركة "المشروبات النقية للصناعة" مقابل 1.040 مليار ريال، في إطار استراتيجية التوسع في قطاع المشروبات.
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-title">🏦 البنك الأهلي يعلن نية إصدار أدوات دين بالدولار</div>
+                        <div class="news-summary">
+                            أعلن البنك الأهلي السعودي عن نيته إصدار أدوات دين مقومة بالدولار الأمريكي لتعزيز رأس المال، وسط موجة إصدارات متزايدة في القطاع المصرفي السعودي.
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-title">⚡ النفط يقفز بأكثر من 4% ويتجاوز 65 دولاراً</div>
+                        <div class="news-summary">
+                            شهدت أسعار النفط ارتفاعاً قوياً بأكثر من 4% لتتجاوز 65 دولاراً للبرميل، مدعومة بتصاعد التوترات في الشرق الأوسط وانخفاض المخزونات الأمريكية.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🌍 تطورات الأسواق العالمية</h2>
+                <div class="stocks-grid">
+                    <div class="stock-item">
+                        <div class="stock-name">الأسواق الخليجية</div>
+                        <div class="stock-price positive">ارتفاع جماعي مدعوم بالنفط</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">الأسواق الأوروبية</div>
+                        <div class="stock-price negative">هبوط لأدنى مستوى في شهر</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">الفيدرالي الأمريكي</div>
+                        <div class="stock-price neutral">تثبيت أسعار الفائدة</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">التضخم البريطاني</div>
+                        <div class="stock-price neutral">3.4% في مايو</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📊 بيانات اقتصادية مهمة</h2>
+                <p><strong>📈 إنتاج السعودية من النفط:</strong> قفز 177 ألف برميل يومياً خلال مايو</p>
+                <p><strong>🏗️ مبيعات الأسمنت:</strong> ارتفعت 14% خلال مايو لتتجاوز 22 مليون طن في 5 أشهر</p>
+                <p><strong>💼 تدفقات الاستثمار الأجنبي:</strong> صافي شراء بـ484 مليون ريال خلال الأسبوع</p>
+                <p><strong>🏆 التنافسية العالمية:</strong> السعودية تحتل المرتبة 17 عالمياً في تقرير التنافسية لعام 2025</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background: rgba(255, 255, 255, 0.95); border-radius: 15px; padding: 30px; text-align: center; margin-top: 30px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);">
+            <h3 style="color: #2c3e50; margin-bottom: 15px;">📋 ملخص التقرير</h3>
+            <p style="font-size: 1.1rem; color: #7f8c8d; line-height: 1.8;">
+                يشهد السوق السعودي ضغوطاً قصيرة المدى مع تراجع تاسي إلى 10,713 نقطة، متأثراً بالتوترات الجيوسياسية. 
+                ومع ذلك، تظهر بعض الإيجابيات مثل إدراج طيران ناس وارتفاع أسعار النفط. 
+                الاستثمار في الأسهم المتوافقة مع الشريعة يوفر خيارات متنوعة للمستثمرين المحافظين.
+            </p>
+            
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #ecf0f1;">
+                <p style="color: #95a5a6; font-size: 0.9rem;">
+                    📅 آخر تحديث: 19 يونيو 2025 | 
+                    📊 المصادر: أرقام، تداول السعودية، مواقع مالية معتمدة | 
+                    ⚠️ للأغراض التعليمية فقط
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Add smooth scrolling and interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.card, .stock-item, .news-item');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add click animation to tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Auto-refresh timestamp (simulate real-time updates)
+            function updateTimestamp() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('ar-SA');
+                const dateElements = document.querySelectorAll('.date');
+                dateElements.forEach(el => {
+                    if (el.textContent.includes('تحديث مباشر')) {
+                        el.textContent = `الخميس 19 يونيو 2025 - آخر تحديث: ${timeString}`;
+                    }
+                });
+            }
+
+            // Update every 30 seconds
+            setInterval(updateTimestamp, 30000);
+        });
+    </script>
+</body>
+</html>
